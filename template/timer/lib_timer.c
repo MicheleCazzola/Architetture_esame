@@ -166,8 +166,9 @@ uint32_t init_timer ( uint8_t timer_num, uint32_t TimerInterval )
 //	 <i> 1 Stop on MR3: the TC and PC will be stopped and TCR[3] will be set to 0 if MR3 matches the TC
 //	 <i> 0 Feature disabled.
 //   </e>
-		LPC_TIM0->MCR = 3;
-		// LPC_TIM0->MCR = 7;		// per avere anche stop on MR0
+		// LPC_TIM0->MCR = 2;		// reset on MR0
+		LPC_TIM0->MCR = 3;			// interrupt and reset on MR0
+		// LPC_TIM0->MCR = 7;		// interrupt, reset and stop on MR0
 // </h>
 //*** <<< end of configuration section >>>    ***
 
@@ -178,8 +179,9 @@ uint32_t init_timer ( uint8_t timer_num, uint32_t TimerInterval )
   else if (timer_num == 1)
   {
 		LPC_TIM1->MR0 = TimerInterval;
-		LPC_TIM1->MCR = 3;				
-		// LPC_TIM1->MCR = 7;		per avere anche stop on MR0
+		// LPC_TIM1->MCR = 2;		// reset on MR0
+		LPC_TIM1->MCR = 3;			// interrupt and reset on MR0
+		// LPC_TIM1->MCR = 7;		// interrupt, reset and stop on MR0
 
 		NVIC_EnableIRQ(TIMER1_IRQn);
 		NVIC_SetPriority(TIMER1_IRQn, 5);	/* less priority than buttons and timer0*/
@@ -188,8 +190,9 @@ uint32_t init_timer ( uint8_t timer_num, uint32_t TimerInterval )
 	else if (timer_num == 2)
   {
 		LPC_TIM2->MR0 = TimerInterval;
-		LPC_TIM2->MCR = 3;				
-		// LPC_TIM2->MCR = 7;		per avere anche stop on MR0
+		// LPC_TIM2->MCR = 2;		// reset on MR0
+		LPC_TIM2->MCR = 3;			// interrupt and reset on MR0
+		// LPC_TIM2->MCR = 7;		// interrupt, reset and stop on MR0
 		
 		NVIC_EnableIRQ(TIMER2_IRQn);
 		NVIC_SetPriority(TIMER2_IRQn, 5);	/* less priority than buttons and timer0*/
@@ -198,8 +201,9 @@ uint32_t init_timer ( uint8_t timer_num, uint32_t TimerInterval )
 	else if(timer_num == 3)
   {
 		LPC_TIM3->MR0 = TimerInterval;
-		LPC_TIM3->MCR = 3;		
-		// LPC_TIM3->MCR = 7;		per avere anche stop on MR0
+		// LPC_TIM3->MCR = 2;		// reset on MR0
+		LPC_TIM3->MCR = 3;			// interrupt and reset on MR0
+		// LPC_TIM3->MCR = 7;		// interrupt, reset and stop on MR0
 
 		NVIC_EnableIRQ(TIMER3_IRQn);
 		NVIC_SetPriority(TIMER3_IRQn, 5);	/* less priority than buttons and timer0*/

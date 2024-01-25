@@ -28,9 +28,9 @@
 // Incrementate ad ogni RIT handler, se avviene
 // immediatamente in seguito alla pressione del
 // pulsante corrispondente
-int down_int0 = 0;
-int down_key1 = 0;
-int down_key2 = 0;
+volatile int down_int0 = 0;
+volatile int down_key1 = 0;
+volatile int down_key2 = 0;
 
 void RIT_IRQHandler (void)
 {		
@@ -89,10 +89,10 @@ void RIT_IRQHandler (void)
 		}
 	}
 	
-  LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
-	
 	// Abilitazione RIT eventuale
 	//enable_RIT();
+	
+  LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
 	
   return;
 }

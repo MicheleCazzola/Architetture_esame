@@ -19,6 +19,10 @@
 #include "button/button.h"
 #include "timer/timer.h"
 #include "RIT/RIT.h"
+#include "joystick/joystick.h"
+#include "adc/adc.h"
+#include "GLCD/GLCD.h"
+#include "TouchPanel/TouchPanel.h"
 
 /* Led external variables from funct_led */
 extern unsigned char led_value;					/* defined in lib_led								*/
@@ -36,7 +40,13 @@ int main (void) {
   BUTTON_init();												/* BUTTON Initialization              */
 	init_RIT(0x004C4B40);									/* RIT initialization to 50 ms				*/
 	init_timer(0, 0x023C3460);						/* TIMER0 Initialization 1.5 s with f = 25 MHz		*/
-	enable_RIT();													/* Enable RIT */
+	joystick_init();											/* joystick init */
+	ADC_init();														/* ADC init */
+	LCD_Initialization();									/* display init */
+	TP_Init();														/* touch panel init */
+	
+	// TouchPanel_Calibrate();							/* touch panel calibrate */
+	//enable_RIT();													/* Enable RIT */
 
 	LPC_SC->PCON |= 0x1;									/* power-down	mode										*/
 	LPC_SC->PCON &= 0xFFFFFFFFD;						

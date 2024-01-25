@@ -28,7 +28,7 @@ static int countPressed(){
 // Funzione di controllo del joystick per scelta
 void joystick_controller(){
 	
-	int i, dir;
+	int i;
 	
 	// Vettore di contatori per ogni possibile direzione di input
 	// Incrementato ogni volta che l'input corrispondente risulta premuto
