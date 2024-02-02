@@ -1,0 +1,97 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             AsmFunctions, CODE, READONLY
+    2 00000000         
+    3 00000000         execute_operation
+                               PROC
+    4 00000000                 EXPORT           execute_operation
+    5 00000000         
+    6 00000000         ; Save all the callee-saved registers
+    7 00000000 E92D 4DF0       push             {r4-r8, r10, r11, lr}
+    8 00000004         
+    9 00000004         ; Manual sign extension
+   10 00000004 EA4F 6000       lsl              r0, r0, #24
+   11 00000008 EA4F 6020       asr              r0, r0, #24
+   12 0000000C EA4F 6101       lsl              r1, r1, #24
+   13 00000010 EA4F 6121       asr              r1, r1, #24
+   14 00000014         
+   15 00000014         ; Which operation should we do?
+   16 00000014 2A01            cmp              r2, #1
+   17 00000016         
+   18 00000016         ; Sum
+   19 00000016 BF0C 1844       addeq            r4, r0, r1  ; Result in r4
+   20 0000001A         
+   21 0000001A         ; Subtraction (note: everything that's not a sum is cons
+                       idered to be a subtraction)
+   22 0000001A 1A44            subne            r4, r0, r1
+   23 0000001C         
+   24 0000001C         ; Check overflow
+   25 0000001C F04F 0500       mov              r5, #0x00   ; By default no ove
+                                                            rflow
+   26 00000020         
+   27 00000020         ; To check overflow just compare the 8 bit result to the
+                        32 bit result.
+   28 00000020         ; If they differ, overflow happened.
+   29 00000020         ; First, I need to calculate the 8 bit result and sign e
+                       xtend it
+   30 00000020 EA4F 6604       lsl              r6, r4, #24
+   31 00000024 EA4F 6626       asr              r6, r6, #24
+   32 00000028         
+   33 00000028         ; Compare r4 and r6
+   34 00000028 42B4            cmp              r4, r6
+   35 0000002A BF18 2501       movne            r5, #0x01   ; Set overflow
+   36 0000002E         
+   37 0000002E         ; Store the overflow result in memory
+   38 0000002E 701D            strb             r5, [r3]
+   39 00000030         
+   40 00000030         ; Return result
+   41 00000030 4620            mov              r0, r4
+   42 00000032         
+   43 00000032         ; Restore registers and return
+   44 00000032 E8BD 8DF0       pop              {r4-r8, r10, r11, pc}
+   45 00000036         
+   46 00000036                 ENDP
+   47 00000036         
+   48 00000036                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\asm_functions.d -o.\asm_functions.o -I.\RTE\_Target_1 -IC:\Users
+\39347\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Users\39
+347\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.0\Device\Include --predefine="
+__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 536" --predefine="_RTE_ SETA
+ 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\asm_fun
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+ctions.lst "..\soluzione\ASE_20220207\ARM solution\ARM solution\proj\asm_functi
+ons.s"
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+AsmFunctions 00000000
+
+Symbol: AsmFunctions
+   Definitions
+      At line 1 in file ..\soluzione\ASE_20220207\ARM
+   Uses
+      None
+Comment: AsmFunctions unused
+execute_operation 00000000
+
+Symbol: execute_operation
+   Definitions
+      At line 3 in file ..\soluzione\ASE_20220207\ARM
+   Uses
+      At line 4 in file ..\soluzione\ASE_20220207\ARM
+Comment: execute_operation used once
+2 symbols
+336 symbols in table
