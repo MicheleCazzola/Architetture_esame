@@ -587,6 +587,36 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>assembly</GroupName>
+          <Files>
+            <File>
+              <FileName>sort_desc_int32.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\assembly\sort_desc_int32.s</FilePath>
+            </File>
+            <File>
+              <FileName>topK_pattern_int32.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\assembly\topK_pattern_int32.s</FilePath>
+            </File>
+            <File>
+              <FileName>standard_procedure.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\assembly\standard_procedure.s</FilePath>
+            </File>
+            <File>
+              <FileName>search_in_array_pool.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\assembly\search_in_array_pool.s</FilePath>
+            </File>
+            <File>
+              <FileName>division_remainder.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\assembly\division_remainder.s</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>

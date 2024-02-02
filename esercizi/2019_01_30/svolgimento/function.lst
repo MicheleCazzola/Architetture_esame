@@ -1,0 +1,80 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             count_ones, CODE, READONLY
+    2 00000000                 EXPORT           count_bits_to_1
+    3 00000000         
+    4 00000000         count_bits_to_1
+    5 00000000 46EC            MOV              R12, SP
+    6 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+    7 00000006         
+    8 00000006 F04F 0100       MOV              R1, #0      ; accumulator
+    9 0000000A F04F 0220       MOV              R2, #32     ; number of bits
+   10 0000000E F04F 0300       MOV              R3, #0      ; index
+   11 00000012 4293    count_loop
+                               CMP              R3, R2
+   12 00000014 D007            BEQ              result
+   13 00000016         
+   14 00000016 F000 0401       AND              R4, R0, #1
+   15 0000001A 4421            ADD              R1, R1, R4
+   16 0000001C         
+   17 0000001C EA4F 0050       LSR              R0, R0, #1
+   18 00000020 F103 0301       ADD              R3, R3, #1
+   19 00000024         
+   20 00000024 E7F5            B                count_loop
+   21 00000026         
+   22 00000026 4608    result  MOV              R0, R1      ; store result
+   23 00000028 E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   24 0000002C         
+   25 0000002C 4770            BX               LR
+   26 0000002E         
+   27 0000002E                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\function.d -o.\function.o -I.\RTE\_Target_1 -IC:\Keil_v5\ARM\PAC
+K\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.7
+.1\Device\Include --predefine="__UVISION_VERSION SETA 536" --predefine="_RTE_ S
+ETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\func
+tion.lst assembly\function.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+count_bits_to_1 00000000
+
+Symbol: count_bits_to_1
+   Definitions
+      At line 4 in file assembly\function.s
+   Uses
+      At line 2 in file assembly\function.s
+Comment: count_bits_to_1 used once
+count_loop 00000012
+
+Symbol: count_loop
+   Definitions
+      At line 11 in file assembly\function.s
+   Uses
+      At line 20 in file assembly\function.s
+Comment: count_loop used once
+count_ones 00000000
+
+Symbol: count_ones
+   Definitions
+      At line 1 in file assembly\function.s
+   Uses
+      None
+Comment: count_ones unused
+result 00000026
+
+Symbol: result
+   Definitions
+      At line 22 in file assembly\function.s
+   Uses
+      At line 12 in file assembly\function.s
+Comment: result used once
+4 symbols
+337 symbols in table

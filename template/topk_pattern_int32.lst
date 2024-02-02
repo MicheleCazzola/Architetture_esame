@@ -1,0 +1,117 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           find_best_k ; finds top-K eleme
+                                                            nts in a vector of 
+                                                            32-bit integers
+    3 00000000         ; R0: vector to analyize
+    4 00000000         ; R1: number of elements
+    5 00000000         ; R2: result vector
+    6 00000000         
+    7 00000000         find_best_k
+    8 00000000 46EC            MOV              R12, SP
+    9 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   10 00000006         
+   11 00000006                 IMPORT           sort_integers
+   12 00000006         
+   13 00000006 B40F            STMFD            SP!, {R0-R3}
+   14 00000008         
+   15 00000008 F7FF FFFE       BL               sort_integers
+   16 0000000C         
+   17 0000000C BC0F            LDMFD            SP!, {R0-R3}
+   18 0000000E         
+   19 0000000E F04F 0303 
+                       select_best_K
+                               MOV              R3, #3      ; BEST-k, k = 3
+   20 00000012 F04F 0400       MOV              R4, #0
+   21 00000016         
+   22 00000016 429C    loop    CMP              R4, R3
+   23 00000018 D006            BEQ              result
+   24 0000001A         
+   25 0000001A F850 5B04       LDR              R5, [R0], #4
+   26 0000001E F842 5B04       STR              R5, [R2], #4
+   27 00000022         
+   28 00000022 F104 0401       ADD              R4, R4, #1
+   29 00000026 E7F6            B                loop
+   30 00000028         
+   31 00000028         
+   32 00000028 4608    result  MOV              R0, R1      ; store result
+   33 0000002A E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   34 0000002E         
+   35 0000002E 4770            BX               LR
+   36 00000030         
+   37 00000030                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\topk_pattern_int32.d -o.\topk_pattern_int32.o -I.\RTE\_Target_1 
+-IC:\Users\HP\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\U
+sers\HP\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include --predefi
+ne="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ 
+SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\top
+k_pattern_int32.lst assembly\topK_pattern_int32.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\topK_pattern_int32.s
+   Uses
+      None
+Comment: .text unused
+find_best_k 00000000
+
+Symbol: find_best_k
+   Definitions
+      At line 7 in file assembly\topK_pattern_int32.s
+   Uses
+      At line 2 in file assembly\topK_pattern_int32.s
+Comment: find_best_k used once
+loop 00000016
+
+Symbol: loop
+   Definitions
+      At line 22 in file assembly\topK_pattern_int32.s
+   Uses
+      At line 29 in file assembly\topK_pattern_int32.s
+Comment: loop used once
+result 00000028
+
+Symbol: result
+   Definitions
+      At line 32 in file assembly\topK_pattern_int32.s
+   Uses
+      At line 23 in file assembly\topK_pattern_int32.s
+Comment: result used once
+select_best_K 0000000E
+
+Symbol: select_best_K
+   Definitions
+      At line 19 in file assembly\topK_pattern_int32.s
+   Uses
+      None
+Comment: select_best_K unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+sort_integers 00000000
+
+Symbol: sort_integers
+   Definitions
+      At line 11 in file assembly\topK_pattern_int32.s
+   Uses
+      At line 15 in file assembly\topK_pattern_int32.s
+Comment: sort_integers used once
+1 symbol
+340 symbols in table

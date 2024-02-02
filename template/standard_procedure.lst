@@ -1,0 +1,63 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           proc_name
+    3 00000000         ; R0: data/result
+    4 00000000         ; R1: data/result
+    5 00000000         ; R2: data
+    6 00000000         ; R3: data
+    7 00000000         
+    8 00000000         proc_name
+    9 00000000 46EC            MOV              R12, SP
+   10 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   11 00000006         
+   12 00000006         
+   13 00000006 4620    result  MOV              R0, R4      ; store result
+   14 00000008 E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   15 0000000C         
+   16 0000000C 4770            BX               LR
+   17 0000000E         
+   18 0000000E                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Users\HP\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\U
+sers\HP\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include --predefi
+ne="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ 
+SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\sta
+ndard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+proc_name 00000000
+
+Symbol: proc_name
+   Definitions
+      At line 8 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: proc_name used once
+result 00000006
+
+Symbol: result
+   Definitions
+      At line 13 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: result unused
+3 symbols
+337 symbols in table

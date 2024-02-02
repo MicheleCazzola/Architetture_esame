@@ -19,6 +19,11 @@
 ".\glcd.o"
 ".\hzlib.o"
 ".\touchpanel.o"
+".\sort_desc_int32.o"
+".\topk_pattern_int32.o"
+".\standard_procedure.o"
+".\search_in_array_pool.o"
+".\division_remainder.o"
 --strict --scatter ".\sample.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

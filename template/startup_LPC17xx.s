@@ -178,9 +178,17 @@ result			MOV R0, R7							; store output vector length into result
 
 Reset_Handler	PROC
                 EXPORT  Reset_Handler             [WEAK]
-                IMPORT  __main
-                LDR     R0, =__main
-                BX      R0
+                ;IMPORT  __main
+                ;LDR     R0, =__main
+                ;BX      R0
+				IMPORT  remainder
+					
+				MOV R1, #7
+				MOV R2, #3
+                BL remainder
+				
+				NOP
+				
                 ENDP
 
 
