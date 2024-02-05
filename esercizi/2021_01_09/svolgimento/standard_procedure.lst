@@ -1,0 +1,90 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           count_negative_and_odd
+    3 00000000         ; R0: array
+    4 00000000         ; R1: number of elements
+    5 00000000         ; R2: data
+    6 00000000         ; R3: data
+    7 00000000         
+    8 00000000         count_negative_and_odd
+    9 00000000 46EC            MOV              R12, SP
+   10 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   11 00000006         
+   12 00000006 F04F 0400       MOV              R4, #0      ; count
+   13 0000000A F04F 0500       MOV              R5, #0      ; index
+   14 0000000E 428D    loop    CMP              R5, R1
+   15 00000010 D00B            BEQ              result
+   16 00000012         
+   17 00000012 F105 0501       ADD              R5, R5, #1
+   18 00000016         
+   19 00000016 F850 6B04       LDR              R6, [R0], #4
+   20 0000001A F016 0F01       TST              R6, #1
+   21 0000001E D0F6            BEQ              loop        ; =1 if even
+   22 00000020         
+   23 00000020 2E00            CMP              R6, #0
+   24 00000022 DAF4            BGE              loop        ; >= 0
+   25 00000024         
+   26 00000024 F104 0401       ADD              R4, R4, #1  ; increment result
+   27 00000028         
+   28 00000028 E7F1            B                loop
+   29 0000002A         
+   30 0000002A         
+   31 0000002A 4620    result  MOV              R0, R4      ; store result
+   32 0000002C E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   33 00000030         
+   34 00000030 4770            BX               LR
+   35 00000032         
+   36 00000032                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+count_negative_and_odd 00000000
+
+Symbol: count_negative_and_odd
+   Definitions
+      At line 8 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: count_negative_and_odd used once
+loop 0000000E
+
+Symbol: loop
+   Definitions
+      At line 14 in file assembly\standard_procedure.s
+   Uses
+      At line 21 in file assembly\standard_procedure.s
+      At line 24 in file assembly\standard_procedure.s
+      At line 28 in file assembly\standard_procedure.s
+
+result 0000002A
+
+Symbol: result
+   Definitions
+      At line 31 in file assembly\standard_procedure.s
+   Uses
+      At line 15 in file assembly\standard_procedure.s
+Comment: result used once
+4 symbols
+337 symbols in table

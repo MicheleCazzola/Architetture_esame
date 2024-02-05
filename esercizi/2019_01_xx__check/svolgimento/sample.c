@@ -40,7 +40,6 @@ int main (void) {
   BUTTON_init();												/* BUTTON Initialization              */
 	init_RIT(0x004C4B40);									/* RIT initialization to 50 ms (100 MHz)				*/
 	init_timer(0, 0x008583B0);						/* TIMER0 Initialization 350 ms with f = 25 MHz		*/
-	//init_timer(0, 0x017D7840);						/* TIMER0 Initialization 1 s with f = 25 MHz		*/
 	init_timer(1, 0x02FAF080);						/* TIMER1 Initialization 2 s with f = 25 MHz		*/
 	joystick_init();											/* joystick init */
 	

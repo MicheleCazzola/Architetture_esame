@@ -1,0 +1,83 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           stat_satisfaction
+    3 00000000         ; R0: S
+    4 00000000         ; R1: N
+    5 00000000         ; R2: I
+    6 00000000         ; R3: &PS
+    7 00000000         
+    8 00000000         stat_satisfaction
+    9 00000000 46EC            MOV              R12, SP
+   10 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   11 00000006         
+   12 00000006 F8DC 4000       LDR              R4, [R12]   ; &PN
+   13 0000000A F8DC 5004       LDR              R5, [R12, #4] ; &PI
+   14 0000000E         
+   15 0000000E 4607            MOV              R7, R0
+   16 00000010 440F            ADD              R7, R7, R1
+   17 00000012 4417            ADD              R7, R7, R2  ; tot clienti
+   18 00000014         
+   19 00000014 F04F 0864       MOV              R8, #100
+   20 00000018         
+   21 00000018 FB00 FB08       MUL              R11, R0, R8
+   22 0000001C FBBB FBF7       UDIV             R11, R11, R7
+   23 00000020 F883 B000       STRB             R11, [R3]   ; calc PS
+   24 00000024         
+   25 00000024 FB01 FB08       MUL              R11, R1, R8
+   26 00000028 FBBB FBF7       UDIV             R11, R11, R7
+   27 0000002C F884 B000       STRB             R11, [R4]   ; calc PN
+   28 00000030         
+   29 00000030 FB02 FB08       MUL              R11, R2, R8
+   30 00000034 FBBB FBF7       UDIV             R11, R11, R7
+   31 00000038 F885 B000       STRB             R11, [R5]   ; calc PI 
+   32 0000003C         
+   33 0000003C         
+   34 0000003C 4638    result  MOV              R0, R7      ; store result
+   35 0000003E E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   36 00000042         
+   37 00000042 4770            BX               LR
+   38 00000044         
+   39 00000044                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+result 0000003C
+
+Symbol: result
+   Definitions
+      At line 34 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: result unused
+stat_satisfaction 00000000
+
+Symbol: stat_satisfaction
+   Definitions
+      At line 8 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: stat_satisfaction used once
+3 symbols
+336 symbols in table

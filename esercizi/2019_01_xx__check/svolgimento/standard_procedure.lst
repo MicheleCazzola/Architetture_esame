@@ -40,11 +40,10 @@ ARM Macro Assembler    Page 1
    31 00000032                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
--IC:\Users\HP\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\U
-sers\HP\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include --predefi
-ne="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ 
-SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\sta
-ndard_procedure.lst assembly\standard_procedure.s
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
 
 
 
@@ -84,4 +83,4 @@ Symbol: result
       At line 16 in file assembly\standard_procedure.s
 Comment: result used once
 4 symbols
-338 symbols in table
+337 symbols in table

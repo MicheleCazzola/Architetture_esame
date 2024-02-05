@@ -1,0 +1,99 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           duty_cycle
+    3 00000000         ; R0: initial value
+    4 00000000         ; R1: tot time
+    5 00000000         ; R2: var times
+    6 00000000         ; R3: num vars
+    7 00000000         
+    8 00000000         duty_cycle
+    9 00000000 46EC            MOV              R12, SP
+   10 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   11 00000006         
+   12 00000006 4604            MOV              R4, R0      ; prev value
+   13 00000008 F04F 0500       MOV              R5, #0      ; index
+   14 0000000C F04F 0B00       MOV              R11, #0     ; 1-state time
+   15 00000010 429D    loop    CMP              R5, R3
+   16 00000012 D00F            BEQ              result
+   17 00000014         
+   18 00000014 F852 6B04       LDR              R6, [R2], #4 ; current var time
+                                                            
+   19 00000018 F014 0F01       TST              R4, #1
+   20 0000001C BF07 46B0       MOVEQ            R8, R6      ; start of 1-state
+   21 00000020 2401            MOVEQ            R4, #1      ; prev value high
+   22 00000022 46B2            MOVNE            R10, R6     ; end of 1-state
+   23 00000024 2400            MOVNE            R4, #0      ; prev value low
+   24 00000026         
+   25 00000026 BF1C 44D3       ADDNE            R11, R11, R10
+   26 0000002A EBAB 0B08       SUBNE            R11, R11, R8 ; cumulate duty cy
+                                                            cle
+   27 0000002E         
+   28 0000002E F105 0501       ADD              R5, R5, #1
+   29 00000032 E7ED            B                loop
+   30 00000034         
+   31 00000034 F014 0F01 
+                       result  TST              R4, #1
+   32 00000038 BF1C 4493       ADDNE            R11, R11, R2
+   33 0000003C EBAB 0B08       SUBNE            R11, R11, R8 ; cumulate duty cy
+                                                            cle if final state 
+                                                            is 1
+   34 00000040         
+   35 00000040 F04F 0464       MOV              R4, #100
+   36 00000044 FB0B F004       MUL              R0, R11, R4
+   37 00000048 FBB0 F0F1       UDIV             R0, R0, R1  ; store result
+   38 0000004C E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   39 00000050         
+   40 00000050 4770            BX               LR
+   41 00000052         
+   42 00000052                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+duty_cycle 00000000
+
+Symbol: duty_cycle
+   Definitions
+      At line 8 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: duty_cycle used once
+loop 00000010
+
+Symbol: loop
+   Definitions
+      At line 15 in file assembly\standard_procedure.s
+   Uses
+      At line 29 in file assembly\standard_procedure.s
+Comment: loop used once
+result 00000034
+
+Symbol: result
+   Definitions
+      At line 31 in file assembly\standard_procedure.s
+   Uses
+      At line 16 in file assembly\standard_procedure.s
+Comment: result used once
+4 symbols
+337 symbols in table

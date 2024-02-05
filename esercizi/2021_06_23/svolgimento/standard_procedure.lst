@@ -1,0 +1,111 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           sopra_la_media
+    3 00000000         ; R0: vett
+    4 00000000         ; R1: number of elements
+    5 00000000         
+    6 00000000         sopra_la_media
+    7 00000000 46EC            MOV              R12, SP
+    8 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+    9 00000006         
+   10 00000006 F04F 0400       MOV              R4, #0      ; index
+   11 0000000A F04F 0600       MOV              R6, #0      ; sum
+   12 0000000E 428C    loop_sum
+                               CMP              R4, R1
+   13 00000010 D004            BEQ              check_above
+   14 00000012         
+   15 00000012 5D05            LDRB             R5, [R0, R4]
+   16 00000014 442E            ADD              R6, R6, R5
+   17 00000016         
+   18 00000016 F104 0401       ADD              R4, R4, #1
+   19 0000001A E7F8            B                loop_sum
+   20 0000001C         
+   21 0000001C FBB6 F6F1 
+                       check_above
+                               UDIV             R6, R6, R1  ; truncate average
+   22 00000020 F04F 0400       MOV              R4, #0      ;index
+   23 00000024 F04F 0700       MOV              R7, #0      ;counter
+   24 00000028 428C    loop_above
+                               CMP              R4, R1
+   25 0000002A D006            BEQ              result
+   26 0000002C         
+   27 0000002C 5D05            LDRB             R5, [R0, R4]
+   28 0000002E 42B5            CMP              R5, R6
+   29 00000030 BFC8 1C7F       ADDGT            R7, R7, #1
+   30 00000034         
+   31 00000034 F104 0401       ADD              R4, R4, #1
+   32 00000038 E7F6            B                loop_above
+   33 0000003A         
+   34 0000003A 4638    result  MOV              R0, R7      ; store result
+   35 0000003C E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   36 00000040         
+   37 00000040 4770            BX               LR
+   38 00000042         
+   39 00000042                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+check_above 0000001C
+
+Symbol: check_above
+   Definitions
+      At line 21 in file assembly\standard_procedure.s
+   Uses
+      At line 13 in file assembly\standard_procedure.s
+Comment: check_above used once
+loop_above 00000028
+
+Symbol: loop_above
+   Definitions
+      At line 24 in file assembly\standard_procedure.s
+   Uses
+      At line 32 in file assembly\standard_procedure.s
+Comment: loop_above used once
+loop_sum 0000000E
+
+Symbol: loop_sum
+   Definitions
+      At line 12 in file assembly\standard_procedure.s
+   Uses
+      At line 19 in file assembly\standard_procedure.s
+Comment: loop_sum used once
+result 0000003A
+
+Symbol: result
+   Definitions
+      At line 34 in file assembly\standard_procedure.s
+   Uses
+      At line 25 in file assembly\standard_procedure.s
+Comment: result used once
+sopra_la_media 00000000
+
+Symbol: sopra_la_media
+   Definitions
+      At line 6 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: sopra_la_media used once
+6 symbols
+339 symbols in table
