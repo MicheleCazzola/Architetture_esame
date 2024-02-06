@@ -34,7 +34,7 @@ volatile int down_key2 = 0;
 
 void RIT_IRQHandler (void)
 {		
-	// Stop RIT eventuale: evitare pending interrupt del rit
+	// Stop RIT
 	disable_RIT();
 	reset_RIT();
 	
@@ -89,7 +89,7 @@ void RIT_IRQHandler (void)
 		}
 	}
 	
-	// Abilitazione RIT eventuale
+	// Abilitazione RIT
 	enable_RIT();
 	
   LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */

@@ -111,65 +111,6 @@ __Vectors       DCD     __initial_sp              ; Top of Stack
                 AREA    |.ARM.__at_0x02FC|, CODE, READONLY
 CRP_Key         DCD     0xFFFFFFFF
                 ENDIF
-					
-				AREA 	morse, DATA, READONLY, align = 4
-morse_symbols			DCD 1021, 4088, 4090, 2044, 510, 4082, 2046, 4080
-						DCD 1020, 4087, 2045, 4084, 1023, 1022, 2047, 4086
-						DCD 4093, 2042, 2040, 511, 2041, 4081, 2043, 4089
-						DCD	4091, 4092, 8175, 8167, 8163, 8161, 8160, 8176
-						DCD 8184, 8188, 8190, 8191
-				
-converted_symbols		DCB "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-					
-				AREA	morse_code, CODE, READONLY
-				EXPORT	translate_morse
-translate_morse	MOV R12, sp
-				STMFD SP!, {R4-R8, R10, R11, LR}
-				
-				MOV R7, #0				; output index
-				MOV R8, #0				; input index
-				MOV R11, #0x000000FF	; symbol starting value, never present in an encoding
-				
-char_loop		CMP R8, R1
-				BEQ result
-				
-				LDRB R10, [R0], #1				; current char
-				LDR R4, [R12]					; change_symbol
-				CMP R10, R4
-update_symbol	ORRLT R11, R10, R11, LSL #1		; update symbol if char is 0 or 1
-				BLT next
-				
-cfr_symbol		MOV R4, #0
-				MOV R3, R10
-				LDR R6, =morse_symbols			; morse encodings as 2_11111111"n", where n is an encoding
-				LDR R10, =converted_symbols		; alphanumeric character corresponding to a morse encoding
-
-cfr_loop		CMP R4, #36
-				BEQ check_space
-				
-				LDR R5, [R6], #4				; current morse encoding
-				CMP R5, R11
-				LDRBEQ R10, [R10, R4]			; if match, load current alnum char
-				STRBEQ R10, [R2, R7]			; if match, store loaded char into output vector
-				ADDEQ R7, R7, #1				; if match, increment output vector length
-				MOVEQ R11, #0x000000FF			; if match, reset symbol to its starting value
-				BEQ check_space					; if match, skip next encodings
-				
-				ADD R4, R4, #1					; if not match, skip to next encoding
-				B cfr_loop
-				
-check_space		LDR R5, [R12, #4]				; load space char constant into morse string
-				CMP R3, R5						; space comparison
-				MOVEQ R10, #0x20				
-				STRBEQ R10, [R2, R7]			; if match, store space character into output vector
-				ADDEQ R7, R7, #1				; if match, increment output vector length
-	
-next			ADD R8, R8, #1					; skip to next morse character
-				B char_loop
-				
-result			MOV R0, R7							; store output vector length into result
-				LDMFD SP!, {R4-R8, R10, R11, LR}
-				BX LR
 
                 AREA    |.text|, CODE, READONLY
 

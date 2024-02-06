@@ -456,21 +456,21 @@ Image Symbol Table
     __NVIC_EnableIRQ                         0x000006f1   Thumb Code    34  lib_button.o(.text)
     __NVIC_SetPriority                       0x00000713   Thumb Code    32  lib_button.o(.text)
     .text                                    0x00000838   Section        0  irq_timer.o(.text)
-    .text                                    0x000009d0   Section        0  lib_timer.o(.text)
-    __NVIC_EnableIRQ                         0x000009d1   Thumb Code    34  lib_timer.o(.text)
-    __NVIC_SetPriority                       0x000009f3   Thumb Code    32  lib_timer.o(.text)
-    .text                                    0x00000b54   Section        0  irq_rit.o(.text)
-    .text                                    0x00000c3c   Section        0  lib_rit.o(.text)
-    .text                                    0x00000cd0   Section        0  funct_joystick.o(.text)
-    countPressed                             0x00000cd1   Thumb Code    42  funct_joystick.o(.text)
-    .text                                    0x00000e90   Section        0  lib_joystick.o(.text)
-    .text                                    0x00000f14   Section       68  standard_procedure.o(.text)
-    .text                                    0x00000f58   Section      100  rt_memcpy_w.o(.text)
-    .text                                    0x00000fbc   Section       74  sys_stackheap_outer.o(.text)
-    .text                                    0x00001008   Section        8  libspace.o(.text)
-    .text                                    0x00001010   Section        0  sys_exit.o(.text)
-    .constdata                               0x0000101c   Section       32  funct_led.o(.constdata)
-    .constdata                               0x0000103c   Section       60  funct_joystick.o(.constdata)
+    .text                                    0x000009dc   Section        0  lib_timer.o(.text)
+    __NVIC_EnableIRQ                         0x000009dd   Thumb Code    34  lib_timer.o(.text)
+    __NVIC_SetPriority                       0x000009ff   Thumb Code    32  lib_timer.o(.text)
+    .text                                    0x00000b60   Section        0  irq_rit.o(.text)
+    .text                                    0x00000c48   Section        0  lib_rit.o(.text)
+    .text                                    0x00000cdc   Section        0  funct_joystick.o(.text)
+    countPressed                             0x00000cdd   Thumb Code    42  funct_joystick.o(.text)
+    .text                                    0x00000e9c   Section        0  lib_joystick.o(.text)
+    .text                                    0x00000f20   Section       68  standard_procedure.o(.text)
+    .text                                    0x00000f64   Section      100  rt_memcpy_w.o(.text)
+    .text                                    0x00000fc8   Section       74  sys_stackheap_outer.o(.text)
+    .text                                    0x00001014   Section        8  libspace.o(.text)
+    .text                                    0x0000101c   Section        0  sys_exit.o(.text)
+    .constdata                               0x00001028   Section       32  funct_led.o(.constdata)
+    .constdata                               0x00001048   Section       60  funct_joystick.o(.constdata)
     STACK                                    0x10000000   Section      512  startup_lpc17xx.o(STACK)
     Stack_Mem                                0x10000000   Data         512  startup_lpc17xx.o(STACK)
     __initial_sp                             0x10000200   Data           0  startup_lpc17xx.o(STACK)
@@ -638,34 +638,34 @@ Image Symbol Table
     disable_button                           0x000007cd   Thumb Code    54  lib_button.o(.text)
     disabled_button                          0x00000803   Thumb Code    28  lib_button.o(.text)
     TIMER0_IRQHandler                        0x00000839   Thumb Code    26  irq_timer.o(.text)
-    TIMER1_IRQHandler                        0x00000853   Thumb Code   112  irq_timer.o(.text)
-    TIMER2_IRQHandler                        0x000008c3   Thumb Code   226  irq_timer.o(.text)
-    TIMER3_IRQHandler                        0x000009a5   Thumb Code     8  irq_timer.o(.text)
-    enable_timer                             0x00000a13   Thumb Code    48  lib_timer.o(.text)
-    disable_timer                            0x00000a43   Thumb Code    48  lib_timer.o(.text)
-    reset_timer                              0x00000a73   Thumb Code    66  lib_timer.o(.text)
-    init_timer                               0x00000ab5   Thumb Code   138  lib_timer.o(.text)
-    RIT_IRQHandler                           0x00000b55   Thumb Code   212  irq_rit.o(.text)
-    enable_RIT                               0x00000c3d   Thumb Code    14  lib_rit.o(.text)
-    disable_RIT                              0x00000c4b   Thumb Code    14  lib_rit.o(.text)
-    reset_RIT                                0x00000c59   Thumb Code     8  lib_rit.o(.text)
-    init_RIT                                 0x00000c61   Thumb Code    98  lib_rit.o(.text)
-    joystick_controller                      0x00000cfb   Thumb Code   224  funct_joystick.o(.text)
-    joystick_controller_advanced             0x00000ddb   Thumb Code   132  funct_joystick.o(.text)
-    joystick_init                            0x00000e91   Thumb Code   122  lib_joystick.o(.text)
-    stat_satisfaction                        0x00000f15   Thumb Code     0  standard_procedure.o(.text)
-    __aeabi_memcpy4                          0x00000f59   Thumb Code     0  rt_memcpy_w.o(.text)
-    __aeabi_memcpy8                          0x00000f59   Thumb Code     0  rt_memcpy_w.o(.text)
-    __rt_memcpy_w                            0x00000f59   Thumb Code   100  rt_memcpy_w.o(.text)
-    _memcpy_lastbytes_aligned                0x00000fa1   Thumb Code     0  rt_memcpy_w.o(.text)
-    __user_setup_stackheap                   0x00000fbd   Thumb Code    74  sys_stackheap_outer.o(.text)
-    __user_libspace                          0x00001009   Thumb Code     8  libspace.o(.text)
-    __user_perproc_libspace                  0x00001009   Thumb Code     0  libspace.o(.text)
-    __user_perthread_libspace                0x00001009   Thumb Code     0  libspace.o(.text)
-    _sys_exit                                0x00001011   Thumb Code     8  sys_exit.o(.text)
-    led_mask                                 0x0000101c   Data          32  funct_led.o(.constdata)
-    Region$$Table$$Base                      0x00001078   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000010a8   Number         0  anon$$obj.o(Region$$Table)
+    TIMER1_IRQHandler                        0x00000853   Thumb Code   122  irq_timer.o(.text)
+    TIMER2_IRQHandler                        0x000008cd   Thumb Code   226  irq_timer.o(.text)
+    TIMER3_IRQHandler                        0x000009af   Thumb Code     8  irq_timer.o(.text)
+    enable_timer                             0x00000a1f   Thumb Code    48  lib_timer.o(.text)
+    disable_timer                            0x00000a4f   Thumb Code    48  lib_timer.o(.text)
+    reset_timer                              0x00000a7f   Thumb Code    66  lib_timer.o(.text)
+    init_timer                               0x00000ac1   Thumb Code   138  lib_timer.o(.text)
+    RIT_IRQHandler                           0x00000b61   Thumb Code   212  irq_rit.o(.text)
+    enable_RIT                               0x00000c49   Thumb Code    14  lib_rit.o(.text)
+    disable_RIT                              0x00000c57   Thumb Code    14  lib_rit.o(.text)
+    reset_RIT                                0x00000c65   Thumb Code     8  lib_rit.o(.text)
+    init_RIT                                 0x00000c6d   Thumb Code    98  lib_rit.o(.text)
+    joystick_controller                      0x00000d07   Thumb Code   224  funct_joystick.o(.text)
+    joystick_controller_advanced             0x00000de7   Thumb Code   132  funct_joystick.o(.text)
+    joystick_init                            0x00000e9d   Thumb Code   122  lib_joystick.o(.text)
+    stat_satisfaction                        0x00000f21   Thumb Code     0  standard_procedure.o(.text)
+    __aeabi_memcpy4                          0x00000f65   Thumb Code     0  rt_memcpy_w.o(.text)
+    __aeabi_memcpy8                          0x00000f65   Thumb Code     0  rt_memcpy_w.o(.text)
+    __rt_memcpy_w                            0x00000f65   Thumb Code   100  rt_memcpy_w.o(.text)
+    _memcpy_lastbytes_aligned                0x00000fad   Thumb Code     0  rt_memcpy_w.o(.text)
+    __user_setup_stackheap                   0x00000fc9   Thumb Code    74  sys_stackheap_outer.o(.text)
+    __user_libspace                          0x00001015   Thumb Code     8  libspace.o(.text)
+    __user_perproc_libspace                  0x00001015   Thumb Code     0  libspace.o(.text)
+    __user_perthread_libspace                0x00001015   Thumb Code     0  libspace.o(.text)
+    _sys_exit                                0x0000101d   Thumb Code     8  sys_exit.o(.text)
+    led_mask                                 0x00001028   Data          32  funct_led.o(.constdata)
+    Region$$Table$$Base                      0x00001084   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000010b4   Number         0  anon$$obj.o(Region$$Table)
     SystemFrequency                          0x2007c000   Data           4  system_lpc17xx.o(.data)
     ScaleFlag                                0x2007c004   Data           1  system_lpc17xx.o(.data)
     led_value                                0x2007c005   Data           1  lib_led.o(.data)
@@ -693,9 +693,9 @@ Memory Map of the image
 
   Image Entry point : 0x000000cd
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x000010d8, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x000010e4, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000010a8, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000010b4, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -762,41 +762,41 @@ Memory Map of the image
     0x0000054c   0x0000054c   0x000000d4   Code   RO          148    .text               funct_led.o
     0x00000620   0x00000620   0x000000d0   Code   RO          213    .text               irq_button.o
     0x000006f0   0x000006f0   0x00000148   Code   RO          253    .text               lib_button.o
-    0x00000838   0x00000838   0x00000198   Code   RO          281    .text               irq_timer.o
-    0x000009d0   0x000009d0   0x00000184   Code   RO          315    .text               lib_timer.o
-    0x00000b54   0x00000b54   0x000000e8   Code   RO          343    .text               irq_rit.o
-    0x00000c3c   0x00000c3c   0x00000094   Code   RO          385    .text               lib_rit.o
-    0x00000cd0   0x00000cd0   0x000001c0   Code   RO          413    .text               funct_joystick.o
-    0x00000e90   0x00000e90   0x00000084   Code   RO          454    .text               lib_joystick.o
-    0x00000f14   0x00000f14   0x00000044   Code   RO          638    .text               standard_procedure.o
-    0x00000f58   0x00000f58   0x00000064   Code   RO          654    .text               c_w.l(rt_memcpy_w.o)
-    0x00000fbc   0x00000fbc   0x0000004a   Code   RO          709    .text               c_w.l(sys_stackheap_outer.o)
-    0x00001006   0x00001006   0x00000002   PAD
-    0x00001008   0x00001008   0x00000008   Code   RO          719    .text               c_w.l(libspace.o)
-    0x00001010   0x00001010   0x0000000c   Code   RO          780    .text               c_w.l(sys_exit.o)
-    0x0000101c   0x0000101c   0x00000020   Data   RO          149    .constdata          funct_led.o
-    0x0000103c   0x0000103c   0x0000003c   Data   RO          415    .constdata          funct_joystick.o
-    0x00001078   0x00001078   0x00000030   Data   RO          848    Region$$Table       anon$$obj.o
+    0x00000838   0x00000838   0x000001a4   Code   RO          281    .text               irq_timer.o
+    0x000009dc   0x000009dc   0x00000184   Code   RO          315    .text               lib_timer.o
+    0x00000b60   0x00000b60   0x000000e8   Code   RO          343    .text               irq_rit.o
+    0x00000c48   0x00000c48   0x00000094   Code   RO          385    .text               lib_rit.o
+    0x00000cdc   0x00000cdc   0x000001c0   Code   RO          413    .text               funct_joystick.o
+    0x00000e9c   0x00000e9c   0x00000084   Code   RO          454    .text               lib_joystick.o
+    0x00000f20   0x00000f20   0x00000044   Code   RO          638    .text               standard_procedure.o
+    0x00000f64   0x00000f64   0x00000064   Code   RO          654    .text               c_w.l(rt_memcpy_w.o)
+    0x00000fc8   0x00000fc8   0x0000004a   Code   RO          709    .text               c_w.l(sys_stackheap_outer.o)
+    0x00001012   0x00001012   0x00000002   PAD
+    0x00001014   0x00001014   0x00000008   Code   RO          719    .text               c_w.l(libspace.o)
+    0x0000101c   0x0000101c   0x0000000c   Code   RO          780    .text               c_w.l(sys_exit.o)
+    0x00001028   0x00001028   0x00000020   Data   RO          149    .constdata          funct_led.o
+    0x00001048   0x00001048   0x0000003c   Data   RO          415    .constdata          funct_joystick.o
+    0x00001084   0x00001084   0x00000030   Data   RO          848    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x10000000, Load base: 0x000010a8, Size: 0x00000200, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x10000000, Load base: 0x000010b4, Size: 0x00000200, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x10000000        -       0x00000200   Zero   RW            1    STACK               startup_lpc17xx.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x000010a8, Size: 0x000000b8, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x000010b4, Size: 0x000000b8, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x2007c000   0x000010a8   0x00000005   Data   RW          115    .data               system_lpc17xx.o
-    0x2007c005   0x000010ad   0x00000001   Data   RW          187    .data               lib_led.o
-    0x2007c006   0x000010ae   0x00000002   PAD
-    0x2007c008   0x000010b0   0x00000004   Data   RW          282    .data               irq_timer.o
-    0x2007c00c   0x000010b4   0x0000000c   Data   RW          344    .data               irq_rit.o
-    0x2007c018   0x000010c0   0x00000014   Data   RW          416    .data               funct_joystick.o
-    0x2007c02c   0x000010d4   0x00000004   Data   RW          479    .data               irq_adc.o
+    0x2007c000   0x000010b4   0x00000005   Data   RW          115    .data               system_lpc17xx.o
+    0x2007c005   0x000010b9   0x00000001   Data   RW          187    .data               lib_led.o
+    0x2007c006   0x000010ba   0x00000002   PAD
+    0x2007c008   0x000010bc   0x00000004   Data   RW          282    .data               irq_timer.o
+    0x2007c00c   0x000010c0   0x0000000c   Data   RW          344    .data               irq_rit.o
+    0x2007c018   0x000010cc   0x00000014   Data   RW          416    .data               funct_joystick.o
+    0x2007c02c   0x000010e0   0x00000004   Data   RW          479    .data               irq_adc.o
     0x2007c030        -       0x00000028   Zero   RW          414    .bss                funct_joystick.o
     0x2007c058        -       0x00000060   Zero   RW          720    .bss                c_w.l(libspace.o)
     0x2007c0b8        -       0x00000000   Zero   RW            2    HEAP                startup_lpc17xx.o
@@ -809,24 +809,24 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       448         50         60         20         40       1837   funct_joystick.o
-       212         12         32          0          0      18883   funct_led.o
-        92         12          0          4          0        726   irq_adc.o
-       208         34          0          0          0       1107   irq_button.o
-       232         20          0         12          0        909   irq_rit.o
-       408         36          0          4          0       1310   irq_timer.o
-       328         26          0          0          0      27938   lib_button.o
-       132         10          0          0          0        484   lib_joystick.o
-        64         14          0          1          0        750   lib_led.o
-       148         14          0          0          0      27411   lib_rit.o
-       388         22          0          0          0       1740   lib_timer.o
-       168         48          0          0          0       4983   sample.o
-        68          0          0          0          0        296   standard_procedure.o
-        56         22        204          0        512       1024   startup_lpc17xx.o
-       588         36          0          5          0        925   system_lpc17xx.o
+       448         50         60         20         40       1965   funct_joystick.o
+       212         12         32          0          0      19139   funct_led.o
+        92         12          0          4          0        854   irq_adc.o
+       208         34          0          0          0       1171   irq_button.o
+       232         20          0         12          0       1037   irq_rit.o
+       420         38          0          4          0       1438   irq_timer.o
+       328         26          0          0          0      28054   lib_button.o
+       132         10          0          0          0        548   lib_joystick.o
+        64         14          0          1          0        878   lib_led.o
+       148         14          0          0          0      27527   lib_rit.o
+       388         22          0          0          0       1820   lib_timer.o
+       168         48          0          0          0       5055   sample.o
+        68          0          0          0          0        360   standard_procedure.o
+        56         22        204          0        512       1152   startup_lpc17xx.o
+       588         36          0          5          0       1053   system_lpc17xx.o
 
     ----------------------------------------------------------------------
-      3540        356        344         48        552      90323   Object Totals
+      3552        358        344         48        552      92051   Object Totals
          0          0         48          0          0          0   (incl. Generated)
          0          0          0          2          0          0   (incl. Padding)
 
@@ -876,15 +876,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3920        372        344         48        648      90047   Grand Totals
-      3920        372        344         48        648      90047   ELF Image Totals
-      3920        372        344         48          0          0   ROM Totals
+      3932        374        344         48        648      91775   Grand Totals
+      3932        374        344         48        648      91775   ELF Image Totals
+      3932        374        344         48          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4264 (   4.16kB)
+    Total RO  Size (Code + RO Data)                 4276 (   4.18kB)
     Total RW  Size (RW Data + ZI Data)               696 (   0.68kB)
-    Total ROM Size (Code + RO Data + RW Data)       4312 (   4.21kB)
+    Total ROM Size (Code + RO Data + RW Data)       4324 (   4.22kB)
 
 ==============================================================================
 
