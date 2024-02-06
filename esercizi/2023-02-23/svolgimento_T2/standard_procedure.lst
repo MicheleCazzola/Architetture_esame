@@ -1,0 +1,93 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           concat_sum
+    3 00000000         ; R0: vector
+    4 00000000         ; R1: vector size
+    5 00000000         ; R2: alarm flag ptr
+    6 00000000         
+    7 00000000         concat_sum
+    8 00000000 46EC            MOV              R12, SP
+    9 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   10 00000006         
+   11 00000006 F04F 0300       MOV              R3, #0      ; index
+   12 0000000A F04F 0401       MOV              R4, #1      ; index+1
+   13 0000000E F04F 0500       MOV              R5, #0      ; result
+   14 00000012 F04F 0800       MOV              R8, #0      ; alarm value
+   15 00000016 428B    loop    CMP              R3, R1
+   16 00000018 DA13            BGE              result
+   17 0000001A         
+   18 0000001A F830 6B02       LDRH             R6, [R0], #2
+   19 0000001E         
+   20 0000001E 428C            CMP              R4, R1
+   21 00000020 BFAC 2700       MOVGE            R7, #0
+   22 00000024 F830 7B02       LDRHLT           R7, [R0], #2
+   23 00000028         
+   24 00000028 EA4F 4606       LSL              R6, R6, #16
+   25 0000002C EA46 0607       ORR              R6, R6, R7
+   26 00000030         
+   27 00000030 19AD            ADDS             R5, R5, R6
+   28 00000032 BF68 F04F 
+              38FF             MOVVS            R8, #-1
+   29 00000038         
+   30 00000038 F103 0302       ADD              R3, R3, #2
+   31 0000003C F104 0402       ADD              R4, R4, #2
+   32 00000040 E7E9            B                loop
+   33 00000042         
+   34 00000042 4628    result  MOV              R0, R5      ; store result
+   35 00000044 F882 8000       STRB             R8, [R2]
+   36 00000048 E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   37 0000004C         
+   38 0000004C 4770            BX               LR
+   39 0000004E         
+   40 0000004E                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+concat_sum 00000000
+
+Symbol: concat_sum
+   Definitions
+      At line 7 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: concat_sum used once
+loop 00000016
+
+Symbol: loop
+   Definitions
+      At line 15 in file assembly\standard_procedure.s
+   Uses
+      At line 32 in file assembly\standard_procedure.s
+Comment: loop used once
+result 00000042
+
+Symbol: result
+   Definitions
+      At line 34 in file assembly\standard_procedure.s
+   Uses
+      At line 16 in file assembly\standard_procedure.s
+Comment: result used once
+4 symbols
+337 symbols in table

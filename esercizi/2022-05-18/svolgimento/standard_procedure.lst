@@ -1,0 +1,115 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           totale_pressioni_con_filtro
+    3 00000000         ; R0: pressure vector
+    4 00000000         ; R1: vector size
+    5 00000000         ; R2: max value
+    6 00000000         ; R3: min value
+    7 00000000         
+    8 00000000         totale_pressioni_con_filtro
+    9 00000000 46EC            MOV              R12, SP
+   10 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   11 00000006         
+   12 00000006 F04F 0400       MOV              R4, #0      ; index
+   13 0000000A F04F 0500       MOV              R5, #0      ; result
+   14 0000000E 428C    loop    CMP              R4, R1
+   15 00000010 D009            BEQ              result
+   16 00000012         
+   17 00000012 F810 6B01       LDRB             R6, [R0], #1
+   18 00000016         
+   19 00000016 429E    first_cfr
+                               CMP              R6, R3
+   20 00000018 D402            BMI              next
+   21 0000001A 4296    second_cfr
+                               CMP              R6, R2
+   22 0000001C D800            BHI              next
+   23 0000001E         
+   24 0000001E 4435            ADD              R5, R5, R6
+   25 00000020         
+   26 00000020 F104 0401 
+                       next    ADD              R4, R4, #1
+   27 00000024 E7F3            B                loop
+   28 00000026         
+   29 00000026         
+   30 00000026 4628    result  MOV              R0, R5      ; store result
+   31 00000028 E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   32 0000002C         
+   33 0000002C 4770            BX               LR
+   34 0000002E         
+   35 0000002E                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+first_cfr 00000016
+
+Symbol: first_cfr
+   Definitions
+      At line 19 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: first_cfr unused
+loop 0000000E
+
+Symbol: loop
+   Definitions
+      At line 14 in file assembly\standard_procedure.s
+   Uses
+      At line 27 in file assembly\standard_procedure.s
+Comment: loop used once
+next 00000020
+
+Symbol: next
+   Definitions
+      At line 26 in file assembly\standard_procedure.s
+   Uses
+      At line 20 in file assembly\standard_procedure.s
+      At line 22 in file assembly\standard_procedure.s
+
+result 00000026
+
+Symbol: result
+   Definitions
+      At line 30 in file assembly\standard_procedure.s
+   Uses
+      At line 15 in file assembly\standard_procedure.s
+Comment: result used once
+second_cfr 0000001A
+
+Symbol: second_cfr
+   Definitions
+      At line 21 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: second_cfr unused
+totale_pressioni_con_filtro 00000000
+
+Symbol: totale_pressioni_con_filtro
+   Definitions
+      At line 8 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: totale_pressioni_con_filtro used once
+7 symbols
+340 symbols in table

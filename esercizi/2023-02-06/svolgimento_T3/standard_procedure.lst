@@ -1,0 +1,99 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           differenza_media_positivi_negat
+ivi
+    3 00000000         ; R0: vector
+    4 00000000         ; R1: vector size
+    5 00000000         ; R2: overflow flag pointer
+    6 00000000         
+    7 00000000         differenza_media_positivi_negativi
+    8 00000000 46EC            MOV              R12, SP
+    9 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   10 00000006         
+   11 00000006 F04F 0300       MOV              R3, #0      ; index
+   12 0000000A F04F 0500       MOV              R5, #0      ; pos sum
+   13 0000000E F04F 0600       MOV              R6, #0      ; neg sum
+   14 00000012 F04F 0700       MOV              R7, #0      ; pos cnt
+   15 00000016 F04F 0800       MOV              R8, #0      ; neg cnt
+   16 0000001A F04F 0A01       MOV              R10, #1     ; overflow flag
+   17 0000001E 428B    loop    CMP              R3, R1
+   18 00000020 D015            BEQ              result
+   19 00000022         
+   20 00000022 F850 4B04       LDR              R4, [R0], #4
+   21 00000026         
+   22 00000026 2C00            CMP              R4, #0
+   23 00000028 BFAA 1C7F       ADDGE            R7, R7, #1
+   24 0000002C F108 0801       ADDLT            R8, R8, #1
+   25 00000030 EB15 0504       ADDGES           R5, R5, R4
+   26 00000034 BF68 F882 
+              A000             STRBVS           R10, [R2]
+   27 0000003A 2C00            CMP              R4, #0
+   28 0000003C BFB8 EB16 
+              0604             ADDLTS           R6, R6, R4
+   29 00000042 BF68 F882 
+              A000             STRBVS           R10, [R2]
+   30 00000048         
+   31 00000048         
+   32 00000048 F103 0301       ADD              R3, R3, #1
+   33 0000004C E7E7            B                loop
+   34 0000004E         
+   35 0000004E FB95 F5F7 
+                       result  SDIV             R5, R5, R7
+   36 00000052 FB96 F6F8       SDIV             R6, R6, R8
+   37 00000056 EBA5 0006       SUB              R0, R5, R6  ; store result 
+   38 0000005A E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   39 0000005E         
+   40 0000005E 4770            BX               LR
+   41 00000060         
+   42 00000060                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+differenza_media_positivi_negativi 00000000
+
+Symbol: differenza_media_positivi_negativi
+   Definitions
+      At line 7 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: differenza_media_positivi_negativi used once
+loop 0000001E
+
+Symbol: loop
+   Definitions
+      At line 17 in file assembly\standard_procedure.s
+   Uses
+      At line 33 in file assembly\standard_procedure.s
+Comment: loop used once
+result 0000004E
+
+Symbol: result
+   Definitions
+      At line 35 in file assembly\standard_procedure.s
+   Uses
+      At line 18 in file assembly\standard_procedure.s
+Comment: result used once
+4 symbols
+337 symbols in table

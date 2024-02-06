@@ -1,0 +1,90 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 EXPORT           calcola_somma_prodotto
+    3 00000000         ; R0: vector
+    4 00000000         ; R1: vector size
+    5 00000000         ; R2: alarm pointer
+    6 00000000         
+    7 00000000         calcola_somma_prodotto
+    8 00000000 46EC            MOV              R12, SP
+    9 00000002 E92D 4DF0       STMFD            SP!, {R4-R8, R10, R11, LR}
+   10 00000006         
+   11 00000006 F04F 0300       MOV              R3, #0
+   12 0000000A F04F 0401       MOV              R4, #1
+   13 0000000E F04F 0700       MOV              R7, #0      ; result
+   14 00000012 428B    loop    CMP              R3, R1
+   15 00000014 D00A            BEQ              result
+   16 00000016         
+   17 00000016 F850 5023       LDR              R5, [R0, R3, LSL #2]
+   18 0000001A F850 6024       LDR              R6, [R0, R4, LSL #2]
+   19 0000001E         
+   20 0000001E FB05 7706       MLA              R7, R5, R6, R7
+   21 00000022         
+   22 00000022 F103 0302       ADD              R3, R3, #2
+   23 00000026 F104 0402       ADD              R4, R4, #2
+   24 0000002A E7F2            B                loop
+   25 0000002C         
+   26 0000002C         
+   27 0000002C 4638    result  MOV              R0, R7      ; store result
+   28 0000002E 28FF            CMP              R0, #255    ; store alarm
+   29 00000030 BFB9 F04F 
+              38FF             MOVLT            R8, #-1
+   30 00000036 F8C2 8000       STRLT            R8, [R2]
+   31 0000003A F04F 0801       MOVGE            R8, #1
+   32 0000003E F8C2 8000       STRGE            R8, [R2]
+   33 00000042 E8BD 4DF0       LDMFD            SP!, {R4-R8, R10, R11, LR}
+   34 00000046         
+   35 00000046 4770            BX               LR
+   36 00000048         
+   37 00000048                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\standard_procedure.d -o.\standard_procedure.o -I.\RTE\_Target_1 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\
+Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__UVISION_VERSION SETA 536" 
+--predefine="_RTE_ SETA 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ S
+ETA 1" --list=.\standard_procedure.lst assembly\standard_procedure.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file assembly\standard_procedure.s
+   Uses
+      None
+Comment: .text unused
+calcola_somma_prodotto 00000000
+
+Symbol: calcola_somma_prodotto
+   Definitions
+      At line 7 in file assembly\standard_procedure.s
+   Uses
+      At line 2 in file assembly\standard_procedure.s
+Comment: calcola_somma_prodotto used once
+loop 00000012
+
+Symbol: loop
+   Definitions
+      At line 14 in file assembly\standard_procedure.s
+   Uses
+      At line 24 in file assembly\standard_procedure.s
+Comment: loop used once
+result 0000002C
+
+Symbol: result
+   Definitions
+      At line 27 in file assembly\standard_procedure.s
+   Uses
+      At line 15 in file assembly\standard_procedure.s
+Comment: result used once
+4 symbols
+337 symbols in table
